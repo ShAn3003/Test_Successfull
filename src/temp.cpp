@@ -1,15 +1,18 @@
+
+#include <omp.h>
 #include <iostream>
-#include <vector>
-#include "temp.h"
 using namespace std;
 
 int main()
 {
-    vector<int> test;
-    for (int i = 0; i < 100000; i++)
+#pragma omp parallel
     {
-        test.push_back(i);
-        cout << "test :" << test[i] << endl;
+        printf("C++实战网(www.cppszw.com), I am Thread %d\n", omp_get_thread_num());
+    }
+#pragma omp parallel for
+    for (int i = 0; i < 10; i++)
+    {
+        printf("C++实战网(www.cppszw.com), I am Thread %d\n", omp_get_thread_num());
     }
     return 0;
 }
